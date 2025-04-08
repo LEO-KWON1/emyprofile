@@ -462,6 +462,21 @@
             color: #333;
             font-size: 1.5rem;
         }
+
+        .product-image {
+            max-width: 80%;
+            height: auto;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .product-image {
+                max-width: 90%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -514,7 +529,7 @@
         <div class="container hero-content">
             <h1>자신의 브랜드 가치를</h1>
             <h1>높일 수 있는 방법</h1>
-            <img src="https://www.e-myprofile.com/theme/basic/img/main_visual.png" alt="e-myprofile 디지털 명함" class="hero-image">
+            <img src="/Users/chongminhyeok/myprofile_chong/아이폰 복사본.png" alt="e-myprofile 디지털 명함" class="hero-image">
             <p>e-myprofile은 현대적인 비즈니스 커뮤니케이션을 위한 완벽한 솔루션입니다.</p>
             <div class="price">
                 <span class="original-price">월 14,900원</span>
@@ -524,20 +539,9 @@
 
     <section class="features">
         <div class="container">
-            <div class="feature-card">
-                <i class="fas fa-mobile-alt"></i>
-                <h3>모바일 최적화</h3>
-                <p>어떤 기기에서도 완벽하게 작동하는 반응형 디자인</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-share-alt"></i>
-                <h3>쉬운 공유</h3>
-                <p>QR코드나 링크로 손쉽게 명함 공유</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-sync"></i>
-                <h3>실시간 업데이트</h3>
-                <p>정보 변경 시 즉시 반영되는 실시간 업데이트</p>
+            <img src="product-image.jpg" alt="e-myprofile 상품 이미지" class="product-image">
+            <div class="price">
+                <span class="original-price">월 14,900원</span>
             </div>
         </div>
     </section>
@@ -596,7 +600,7 @@
                 </ul>
             </div>
             <div class="social-icons">
-                <a href="https://www.instagram.com/e_myprofile" target="_blank" class="instagram-icon">
+                <a href="https://www.instagram.com/e_myprofile" target="_blank" class="social-icon">
                     <i class="fab fa-instagram"></i>
                 </a>
             </div>
