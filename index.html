@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-myprofile - 디지털 명함</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #000DFF;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #000DFF;
+            margin-bottom: 1rem;
+        }
+
+        .cta {
+            background: #000DFF;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #000DFF;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>e-myprofile</h1>
+            <p>디지털 시대의 새로운 명함</p>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>디지털 명함으로 비즈니스를 더 스마트하게</h1>
+            <p>e-myprofile은 현대적인 비즈니스 커뮤니케이션을 위한 완벽한 솔루션입니다.</p>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="feature-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>모바일 최적화</h3>
+                <p>어떤 기기에서도 완벽하게 작동하는 반응형 디자인</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-share-alt"></i>
+                <h3>쉬운 공유</h3>
+                <p>QR코드나 링크로 손쉽게 명함 공유</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-sync"></i>
+                <h3>실시간 업데이트</h3>
+                <p>정보 변경 시 즉시 반영되는 실시간 업데이트</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>지금 바로 시작하세요</h2>
+            <p>디지털 명함으로 비즈니스의 새로운 시작을 경험하세요</p>
+            <a href="#" class="cta-button">무료로 시작하기</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 e-myprofile. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
