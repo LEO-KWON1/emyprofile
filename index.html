@@ -456,8 +456,8 @@
                 <a href="#">공지사항</a>
             </nav>
             <div class="user-actions">
-                <a href="#">로그인</a>
-                <a href="#">회원가입</a>
+                <a href="#" onclick="openLoginModal(); return false;">로그인</a>
+                <a href="#" onclick="openLoginModal(); return false;">회원가입</a>
                 <a href="#">장바구니</a>
             </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
@@ -478,8 +478,8 @@
             <a href="#">전체상품</a>
             <a href="#">커뮤니티</a>
             <a href="#">공지사항</a>
-            <a href="#">로그인</a>
-            <a href="#">회원가입</a>
+            <a href="#" onclick="openLoginModal(); return false;">로그인</a>
+            <a href="#" onclick="openLoginModal(); return false;">회원가입</a>
             <a href="#">장바구니</a>
         </div>
     </div>
@@ -618,15 +618,24 @@
         // 모달 열기
         function openLoginModal() {
             document.getElementById('loginModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // 스크롤 방지
         }
 
         // 모달 닫기
         function closeLoginModal() {
             document.getElementById('loginModal').classList.remove('active');
+            document.body.style.overflow = ''; // 스크롤 복원
         }
 
         // 카카오 로그인 버튼 클릭 이벤트
         document.getElementById('kakao-login-btn').addEventListener('click', kakaoLogin);
+
+        // 모달 외부 클릭 시 닫기
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLoginModal();
+            }
+        });
 
         // 모바일 메뉴 토글
         function toggleMobileMenu() {
