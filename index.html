@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>e-myprofile - 디지털 명함</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <style>
         * {
             margin: 0;
@@ -343,6 +344,98 @@
                 margin-bottom: 2rem;
             }
         }
+
+        .kakao-login-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #FEE500;
+            color: #000000;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 300px;
+            transition: transform 0.3s;
+        }
+
+        .kakao-login-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .kakao-login-btn img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-modal.active {
+            display: flex;
+        }
+
+        .login-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .login-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #000DFF;
+        }
+
+        .login-description {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .login-benefits {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .login-benefits li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .login-benefits i {
+            color: #000DFF;
+        }
     </style>
 </head>
 <body>
@@ -478,7 +571,63 @@
         </div>
     </footer>
 
+    <div class="login-modal" id="loginModal">
+        <div class="login-content">
+            <button class="close-modal" onclick="closeLoginModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="login-title">카카오톡 1초 회원가입</h2>
+            <p class="login-description">카카오톡으로 간편하게 시작하세요</p>
+            <a id="kakao-login-btn" class="kakao-login-btn">
+                <img src="https://kaka.la/3QY7" alt="카카오톡 로고">
+                카카오톡으로 시작하기
+            </a>
+            <div class="login-benefits">
+                <h3>회원가입 혜택</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 15만원 쿠폰 즉시 지급</li>
+                    <li><i class="fas fa-check-circle"></i> 카카오톡 채널 추가 시 5% 추가 할인</li>
+                    <li><i class="fas fa-check-circle"></i> 무료 배송 혜택</li>
+                    <li><i class="fas fa-check-circle"></i> 30일 무료 체험</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // 카카오 SDK 초기화
+        Kakao.init('YOUR_KAKAO_APP_KEY'); // 실제 앱 키로 교체 필요
+
+        // 카카오 로그인
+        function kakaoLogin() {
+            Kakao.Auth.login({
+                success: function(authObj) {
+                    // 로그인 성공 시 처리
+                    console.log(authObj);
+                    // 여기에 회원가입/로그인 처리 로직 추가
+                    alert('회원가입이 완료되었습니다! 15만원 쿠폰이 지급되었습니다.');
+                    closeLoginModal();
+                },
+                fail: function(err) {
+                    console.log(err);
+                    alert('로그인에 실패했습니다. 다시 시도해주세요.');
+                }
+            });
+        }
+
+        // 모달 열기
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        // 모달 닫기
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+
+        // 카카오 로그인 버튼 클릭 이벤트
+        document.getElementById('kakao-login-btn').addEventListener('click', kakaoLogin);
+
         // 모바일 메뉴 토글
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
