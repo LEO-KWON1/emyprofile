@@ -567,6 +567,69 @@
             background: white;
             border-radius: 10px;
         }
+
+        .qna-page {
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .qna-page.active {
+            display: block;
+        }
+
+        .qna-list {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .qna-item {
+            border-bottom: 1px solid #eee;
+            padding: 1rem;
+        }
+
+        .qna-item:last-child {
+            border-bottom: none;
+        }
+
+        .qna-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .qna-title h3 {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .qna-content {
+            display: none;
+            padding: 1rem;
+            margin-top: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .qna-content.active {
+            display: block;
+        }
+
+        .write-btn {
+            background: #000DFF;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .write-btn:hover {
+            background: #0000cc;
+        }
     </style>
 </head>
 <body>
@@ -738,6 +801,45 @@
         </div>
     </div>
 
+    <div class="qna-page" id="qnaPage">
+        <div class="container">
+            <h2>Q&A 게시판</h2>
+            <button class="write-btn" onclick="alert('준비 중입니다.')">글쓰기</button>
+            <div class="qna-list">
+                <div class="qna-item">
+                    <div class="qna-title" onclick="toggleQnA(this)">
+                        <h3>Q. 디지털 명함은 어떻게 사용하나요?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="qna-content">
+                        A. e-myprofile 디지털 명함은 간단한 터치나 QR코드 스캔으로 쉽게 공유할 수 있습니다. 
+                        정보 업데이트도 실시간으로 가능하며, 모든 디바이스에서 확인 가능합니다.
+                    </div>
+                </div>
+                <div class="qna-item">
+                    <div class="qna-title" onclick="toggleQnA(this)">
+                        <h3>Q. 구독 해지는 어떻게 하나요?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="qna-content">
+                        A. 마이페이지 > 구독관리에서 언제든지 해지가 가능합니다. 
+                        해지 후에도 해당 월 말일까지는 서비스 이용이 가능합니다.
+                    </div>
+                </div>
+                <div class="qna-item">
+                    <div class="qna-title" onclick="toggleQnA(this)">
+                        <h3>Q. 결제 방법은 어떻게 되나요?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="qna-content">
+                        A. 신용카드, 계좌이체, 카카오페이 등 다양한 결제 수단을 지원합니다. 
+                        정기구독의 경우 매월 자동결제됩니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // 카카오 SDK 초기화
         Kakao.init('YOUR_KAKAO_APP_KEY'); // 실제 앱 키로 교체 필요
@@ -825,7 +927,33 @@
 
         // Q&A 페이지로 이동
         function showQnA() {
-            window.location.href = 'https://www.e-myprofile.com/qna';
+            document.getElementById('qnaPage').classList.add('active');
+            // 다른 섹션들 숨기기
+            document.querySelector('.hero').style.display = 'none';
+            document.querySelector('.features').style.display = 'none';
+            document.querySelector('.benefits').style.display = 'none';
+            document.querySelector('.cta-section').style.display = 'none';
+            document.getElementById('cartPage').classList.remove('active');
+        }
+
+        // Q&A 토글 함수
+        function toggleQnA(element) {
+            const content = element.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            
+            // 다른 모든 Q&A 닫기
+            document.querySelectorAll('.qna-content').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.qna-title i').forEach(icon => {
+                icon.style.transform = 'rotate(0deg)';
+            });
+
+            // 선택된 Q&A 토글
+            if (!isActive) {
+                content.classList.add('active');
+                element.querySelector('i').style.transform = 'rotate(180deg)';
+            }
         }
     </script>
 </body>
