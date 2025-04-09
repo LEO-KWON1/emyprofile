@@ -358,12 +358,10 @@
             }
         }
 
-        .kakao-login-btn {
+        .kakao-login-btn, .apple-login-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: #FEE500;
-            color: #000000;
             padding: 12px 24px;
             border-radius: 12px;
             text-decoration: none;
@@ -374,14 +372,43 @@
             transition: transform 0.3s;
         }
 
-        .kakao-login-btn:hover {
+        .kakao-login-btn {
+            background: #FEE500;
+            color: #000000;
+        }
+
+        .apple-login-btn {
+            background: #000000;
+            color: #FFFFFF;
+        }
+
+        .kakao-login-btn:hover, .apple-login-btn:hover {
             transform: scale(1.05);
         }
 
-        .kakao-login-btn img {
+        .kakao-login-btn img, .apple-login-btn img {
             width: 24px;
             height: 24px;
             margin-right: 10px;
+        }
+
+        .login-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            color: #666;
+        }
+
+        .login-divider::before,
+        .login-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #eee;
+        }
+
+        .login-divider span {
+            padding: 0 10px;
         }
 
         .login-modal {
@@ -762,11 +789,18 @@
             <button class="close-modal" onclick="closeLoginModal()">
                 <i class="fas fa-times"></i>
             </button>
-            <h2 class="login-title">카카오톡 1초 회원가입</h2>
-            <p class="login-description">카카오톡으로 간편하게 시작하세요</p>
+            <h2 class="login-title">간편 로그인</h2>
+            <p class="login-description">카카오톡이나 애플로 간편하게 시작하세요</p>
             <a id="kakao-login-btn" class="kakao-login-btn">
-                <img src="https://kaka.la/3QY7" alt="카카오톡 로고">
+                <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" alt="카카오톡 로고">
                 카카오톡으로 시작하기
+            </a>
+            <div class="login-divider">
+                <span>또는</span>
+            </div>
+            <a id="apple-login-btn" class="apple-login-btn">
+                <i class="fab fa-apple" style="font-size: 24px; margin-right: 10px;"></i>
+                Apple로 시작하기
             </a>
             <div class="login-benefits">
                 <h3>회원가입 혜택</h3>
@@ -842,16 +876,14 @@
 
     <script>
         // 카카오 SDK 초기화
-        Kakao.init('YOUR_KAKAO_APP_KEY'); // 실제 앱 키로 교체 필요
+        Kakao.init('YOUR_KAKAO_APP_KEY');
 
         // 카카오 로그인
         function kakaoLogin() {
             Kakao.Auth.login({
                 success: function(authObj) {
-                    // 로그인 성공 시 처리
                     console.log(authObj);
-                    // 여기에 회원가입/로그인 처리 로직 추가
-                    alert('회원가입이 완료되었습니다! 15만원 쿠폰이 지급되었습니다.');
+                    alert('카카오톡 로그인이 완료되었습니다! 15만원 쿠폰이 지급되었습니다.');
                     closeLoginModal();
                 },
                 fail: function(err) {
@@ -859,6 +891,11 @@
                     alert('로그인에 실패했습니다. 다시 시도해주세요.');
                 }
             });
+        }
+
+        // 애플 로그인
+        function appleLogin() {
+            alert('애플 로그인은 준비 중입니다.');
         }
 
         // 모달 열기
@@ -873,15 +910,9 @@
             document.body.style.overflow = ''; // 스크롤 복원
         }
 
-        // 카카오 로그인 버튼 클릭 이벤트
+        // 이벤트 리스너 추가
         document.getElementById('kakao-login-btn').addEventListener('click', kakaoLogin);
-
-        // 모달 외부 클릭 시 닫기
-        document.getElementById('loginModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeLoginModal();
-            }
-        });
+        document.getElementById('apple-login-btn').addEventListener('click', appleLogin);
 
         // 모바일 메뉴 토글
         function toggleMobileMenu() {
